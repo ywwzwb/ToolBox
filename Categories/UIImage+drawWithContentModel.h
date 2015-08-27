@@ -10,4 +10,5 @@
 
 @interface UIImage (drawWithContentModel)
 -(void)drawInRect:(CGRect)rect withContentMode:(UIViewContentMode)contentMode;
+-(void)drawInRect:(CGRect)rect withContentMode:(UIViewContentMode)contentMode andCornerRadius:(CGFloat) cornerRadius;
 @end

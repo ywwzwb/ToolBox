@@ -10,8 +10,7 @@
 
 @implementation UIImage (drawWithContentModel)
 
-
--(void)drawInRect:(CGRect)rect withContentMode:(UIViewContentMode)contentMode{
+-(CGRect)getDrawRectByContainerRect:(CGRect) rect withContentMode:(UIViewContentMode) contentMode{
     CGRect drawRect=CGRectZero;
     switch (contentMode) {
         case UIViewContentModeCenter:
@@ -77,11 +76,20 @@
             break;
         default:
             drawRect=rect;
+            drawRect.origin=CGPointZero;
             break;
     }
-    [[UIBezierPath bezierPathWithRect:rect] addClip];
-    [self drawInRect:drawRect];
-    
+    drawRect.origin.x+=rect.origin.x;
+    drawRect.origin.y+=rect.origin.y;
+    return drawRect;
+}
+
+-(void)drawInRect:(CGRect)rect withContentMode:(UIViewContentMode)contentMode{
+    [self drawInRect:rect withContentMode:contentMode andCornerRadius:0];
+}
+-(void)drawInRect:(CGRect)rect withContentMode:(UIViewContentMode)contentMode andCornerRadius:(CGFloat)cornerRadius{
+    [[UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:cornerRadius] addClip];
+    [self drawInRect:[self getDrawRectByContainerRect:rect withContentMode:contentMode]];
 }
 
 @end
