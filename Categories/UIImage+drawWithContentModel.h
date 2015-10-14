@@ -2,7 +2,7 @@
 //  UIImage+drawWithContentModel.h
 //  L13SuperCard
 //
-//  Created by 曾文斌 on 15/8/22.
+//  Created by ywwzwb on 15/8/22.
 //  Copyright (c) 2015年 zengwenbin. All rights reserved.
 //
 
